@@ -1,0 +1,972 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Groundwork — Send it. Handled.</title>
+  <meta name="description" content="Send it. Handled. Flat-rate task execution for nonprofits, agencies, and economic development orgs. No retainer." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      /* Core palette — strata-derived, monochromatic warm */
+      --gw-ink:        #2C2C2A;
+      --gw-mid:        #5F5E5A;
+      --gw-stone:      #B4B2A9;
+      --gw-fog:        #D3D1C7;
+      --gw-paper:      #F1EFE8;
+      --gw-paper-warm: #ECE7DA;
+      --gw-white:      #FFFFFF;
+
+      /* Typography */
+      --gw-font-primary:   'Outfit', sans-serif;
+      --gw-font-editorial: 'DM Serif Display', Georgia, serif;
+
+      --gw-radius-sm:  4px;
+      --gw-radius-md:  8px;
+      --gw-radius-lg:  14px;
+
+      --gw-shadow-sm:  0 1px 3px rgba(44,44,42,0.08);
+      --gw-shadow-md:  0 4px 16px rgba(44,44,42,0.10);
+      --gw-shadow-lg:  0 12px 40px rgba(44,44,42,0.10), 0 2px 8px rgba(44,44,42,0.05);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--gw-paper);
+      color: var(--gw-ink);
+      font-family: var(--gw-font-primary);
+      font-size: 17px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--gw-ink);
+      text-decoration: none;
+      border-bottom: 1px solid currentColor;
+    }
+    a:hover { color: var(--gw-mid); }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .wrap-narrow {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ========== Logo lockup ========== */
+    .lockup {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      border: none;
+    }
+    .lockup:hover { border: none; }
+    .lockup .mark { display: block; flex-shrink: 0; }
+    .lockup .wordmark {
+      font-family: var(--gw-font-primary);
+      font-weight: 600;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+      color: var(--gw-ink);
+      line-height: 1;
+    }
+    .lockup .subline {
+      font-family: var(--gw-font-primary);
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gw-mid);
+      margin-top: 4px;
+      line-height: 1;
+    }
+
+    /* ========== Top nav ========== */
+    .top {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--gw-fog);
+      background: rgba(241, 239, 232, 0.85);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: saturate(140%) blur(8px);
+      -webkit-backdrop-filter: saturate(140%) blur(8px);
+    }
+    .top .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-cta {
+      font-family: var(--gw-font-primary);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gw-white);
+      background: var(--gw-ink);
+      padding: 10px 18px;
+      border-radius: var(--gw-radius-sm);
+      border: none;
+      transition: background 0.15s;
+    }
+    .nav-cta:hover { background: #000; color: var(--gw-white); }
+
+    /* ========== Hero ========== */
+    .hero {
+      position: relative;
+      padding: 96px 0 88px;
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .eyebrow {
+      font-family: var(--gw-font-primary);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gw-mid);
+      margin: 0 0 24px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease-out 0.05s forwards;
+    }
+    .hero h1 {
+      font-family: var(--gw-font-primary);
+      font-weight: 600;
+      font-size: clamp(48px, 6.5vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      margin: 0 0 28px;
+      color: var(--gw-ink);
+      opacity: 0;
+      animation: fadeUp 0.7s ease-out 0.15s forwards;
+    }
+    .hero h1 .handled {
+      display: block;
+      font-family: var(--gw-font-editorial);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gw-mid);
+      letter-spacing: -0.01em;
+    }
+    .hero .lede {
+      font-size: 19px;
+      color: var(--gw-mid);
+      max-width: 520px;
+      margin: 0 0 36px;
+      line-height: 1.5;
+      opacity: 0;
+      animation: fadeUp 0.7s ease-out 0.28s forwards;
+    }
+    .cta-row {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s ease-out 0.42s forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: var(--gw-font-primary);
+      font-size: 15px;
+      font-weight: 500;
+      padding: 14px 24px;
+      border-radius: var(--gw-radius-sm);
+      border: none;
+      transition: background 0.15s, color 0.15s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--gw-ink);
+      color: var(--gw-white);
+    }
+    .btn-primary:hover { background: #000; color: var(--gw-white); border: none; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--gw-ink);
+      border-bottom: 1px solid var(--gw-ink);
+      padding: 14px 0;
+      border-radius: 0;
+    }
+    .btn-ghost:hover { color: var(--gw-mid); border-color: var(--gw-mid); background: transparent; }
+
+    /* ========== Phone mockup ========== */
+    .hero-demo {
+      display: flex;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.55s forwards;
+    }
+    .phone-frame {
+      width: 340px;
+      max-width: 100%;
+      background: var(--gw-white);
+      border: 0.5px solid var(--gw-fog);
+      border-radius: 20px;
+      padding: 20px 18px 18px;
+      box-shadow: var(--gw-shadow-lg);
+    }
+    .phone-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 14px;
+      border-bottom: 0.5px solid var(--gw-fog);
+      margin-bottom: 16px;
+    }
+    .phone-header .mark { display: block; flex-shrink: 0; }
+    .phone-header .contact {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      line-height: 1;
+    }
+    .phone-header .contact-name {
+      font-family: var(--gw-font-primary);
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--gw-ink);
+      letter-spacing: -0.01em;
+    }
+    .phone-header .contact-status {
+      font-family: var(--gw-font-primary);
+      font-size: 11px;
+      color: var(--gw-stone);
+      letter-spacing: 0.02em;
+    }
+    .phone-header .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #3B6D11;
+      margin-left: auto;
+    }
+
+    .phone-messages {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .msg {
+      max-width: 82%;
+      padding: 10px 14px;
+      border-radius: 18px;
+      font-family: var(--gw-font-primary);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .msg p { margin: 0; }
+    .msg-in {
+      align-self: flex-start;
+      background: var(--gw-paper-warm);
+      color: var(--gw-ink);
+      border-bottom-left-radius: 6px;
+      margin-top: 8px;
+    }
+    .msg-out {
+      align-self: flex-end;
+      background: var(--gw-ink);
+      color: var(--gw-white);
+      border-bottom-right-radius: 6px;
+      margin-top: 8px;
+    }
+    .msg-out + .msg-out { margin-top: 2px; border-bottom-right-radius: 6px; border-top-right-radius: 18px; }
+    .msg-meta {
+      font-family: var(--gw-font-primary);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gw-stone);
+      margin-top: 12px;
+    }
+    .msg-meta-in { align-self: flex-start; }
+    .msg-meta-out { align-self: flex-end; }
+
+    .msg .link {
+      color: var(--gw-white);
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+    }
+
+    .phone-footer {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 0.5px dashed var(--gw-fog);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--gw-font-primary);
+      font-size: 11px;
+      color: var(--gw-stone);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .phone-footer .check {
+      color: #3B6D11;
+      font-weight: 500;
+    }
+
+    /* ========== Sections ========== */
+    section {
+      padding: 88px 0;
+      border-top: 1px solid var(--gw-fog);
+    }
+    .eyebrow-sec {
+      font-family: var(--gw-font-primary);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gw-mid);
+      margin: 0 0 16px;
+    }
+    h2 {
+      font-family: var(--gw-font-primary);
+      font-weight: 500;
+      font-size: clamp(32px, 4.2vw, 40px);
+      line-height: 1.12;
+      letter-spacing: -0.015em;
+      margin: 0 0 32px;
+      color: var(--gw-ink);
+    }
+    h3 {
+      font-family: var(--gw-font-primary);
+      font-weight: 500;
+      font-size: 22px;
+      letter-spacing: -0.01em;
+      margin: 0 0 8px;
+      color: var(--gw-ink);
+    }
+    p { margin: 0 0 16px; }
+    .lead-para {
+      font-size: 18px;
+      color: var(--gw-mid);
+      max-width: 620px;
+      margin-bottom: 40px;
+    }
+
+    /* ========== How it works ========== */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .step {
+      background: var(--gw-white);
+      border: 0.5px solid var(--gw-fog);
+      border-radius: var(--gw-radius-md);
+      padding: 32px;
+    }
+    .step-num {
+      font-family: var(--gw-font-primary);
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--gw-stone);
+      margin-bottom: 16px;
+      display: block;
+      text-transform: uppercase;
+    }
+    .step h3 { margin-bottom: 8px; }
+    .step p {
+      color: var(--gw-mid);
+      font-size: 15px;
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    /* ========== Pricing ========== */
+    .tiers {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .tier {
+      background: var(--gw-white);
+      border: 0.5px solid var(--gw-fog);
+      border-radius: var(--gw-radius-md);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .tier:hover {
+      border-color: var(--gw-ink);
+      transform: translateY(-2px);
+    }
+    .tier-name {
+      font-family: var(--gw-font-primary);
+      font-weight: 500;
+      font-size: 18px;
+      color: var(--gw-ink);
+    }
+    .tier-when {
+      font-family: var(--gw-font-primary);
+      font-size: 13px;
+      color: var(--gw-mid);
+      margin-bottom: 18px;
+    }
+    .tier-price {
+      font-family: var(--gw-font-editorial);
+      font-size: 38px;
+      color: var(--gw-ink);
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+    .tier-price .unit {
+      font-family: var(--gw-font-primary);
+      font-weight: 400;
+      font-size: 13px;
+      color: var(--gw-mid);
+      margin-left: 6px;
+      letter-spacing: 0;
+    }
+    .pricing-note {
+      font-size: 14px;
+      color: var(--gw-stone);
+      margin-top: 24px;
+      max-width: 720px;
+    }
+
+    /* ========== Scope ========== */
+    .scope {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .scope-col {
+      background: var(--gw-white);
+      border: 0.5px solid var(--gw-fog);
+      border-radius: var(--gw-radius-md);
+      padding: 32px;
+    }
+    .scope-col h3 {
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--gw-fog);
+      margin-bottom: 16px;
+    }
+    .scope-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 15px;
+      color: var(--gw-mid);
+    }
+    .scope-col li {
+      padding: 7px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .scope-col .marker {
+      color: var(--gw-ink);
+      font-weight: 500;
+      width: 14px;
+      display: inline-block;
+    }
+    .scope-col.out .marker { color: var(--gw-stone); }
+
+    /* ========== Practices ========== */
+    .practices {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .practice {
+      background: var(--gw-white);
+      border: 0.5px solid var(--gw-fog);
+      border-radius: var(--gw-radius-md);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+    }
+    .practice-lockup {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .practice-name {
+      font-family: var(--gw-font-primary);
+      font-weight: 600;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      color: var(--gw-ink);
+      line-height: 1.1;
+    }
+    .practice-vertical {
+      font-family: var(--gw-font-primary);
+      font-weight: 400;
+      font-size: 14px;
+      color: var(--gw-mid);
+      line-height: 1.2;
+    }
+    .practice p {
+      font-size: 15px;
+      color: var(--gw-mid);
+      margin: 0;
+    }
+    .tag {
+      display: inline-block;
+      font-family: var(--gw-font-primary);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 11px;
+      border-radius: 999px;
+      align-self: flex-start;
+    }
+    .tag-live {
+      background: var(--gw-ink);
+      color: var(--gw-white);
+    }
+    .tag-soon {
+      background: transparent;
+      color: var(--gw-stone);
+      border: 1px solid var(--gw-fog);
+    }
+
+    /* ========== Why ========== */
+    .why p {
+      font-size: 19px;
+      color: var(--gw-mid);
+      max-width: 680px;
+      line-height: 1.5;
+    }
+    .why .editorial {
+      font-family: var(--gw-font-editorial);
+      font-style: italic;
+      font-size: 32px;
+      color: var(--gw-ink);
+      line-height: 1.2;
+      margin: 32px 0;
+      max-width: 680px;
+    }
+
+    /* ========== FAQ ========== */
+    details {
+      border-bottom: 1px solid var(--gw-fog);
+      padding: 22px 0;
+    }
+    details summary {
+      font-family: var(--gw-font-primary);
+      font-weight: 500;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--gw-ink);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after {
+      content: '+';
+      font-size: 22px;
+      color: var(--gw-mid);
+      font-weight: 300;
+    }
+    details[open] summary::after { content: '−'; }
+    details p {
+      margin-top: 14px;
+      color: var(--gw-mid);
+      font-size: 16px;
+      line-height: 1.55;
+      max-width: 720px;
+    }
+
+    /* ========== Final CTA ========== */
+    .cta-block {
+      background: var(--gw-paper-warm);
+      border: 0.5px solid var(--gw-fog);
+      padding: 64px 40px;
+      border-radius: var(--gw-radius-lg);
+      text-align: center;
+      margin: 24px 0;
+    }
+    .cta-block h2 { margin-bottom: 12px; }
+    .cta-block p {
+      color: var(--gw-mid);
+      max-width: 480px;
+      margin: 0 auto 32px;
+      font-size: 17px;
+    }
+
+    /* ========== Footer ========== */
+    footer {
+      padding: 48px 0 64px;
+      border-top: 1px solid var(--gw-fog);
+      font-size: 14px;
+      color: var(--gw-stone);
+    }
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    footer a { color: var(--gw-mid); border: none; }
+    footer a:hover { color: var(--gw-ink); }
+    footer .foot-tag {
+      font-family: var(--gw-font-primary);
+      font-size: 12px;
+      color: var(--gw-stone);
+      letter-spacing: 0.04em;
+    }
+
+    /* ========== Mobile ========== */
+    @media (max-width: 860px) {
+      .hero { padding: 64px 0; }
+      .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+      .hero-demo { order: 2; }
+      .steps { grid-template-columns: 1fr; }
+      .tiers { grid-template-columns: repeat(2, 1fr); }
+      .practices { grid-template-columns: 1fr; }
+      .scope { grid-template-columns: 1fr; gap: 16px; }
+      section { padding: 64px 0; }
+      .cta-block { padding: 48px 24px; }
+      .lockup .subline { display: none; }
+    }
+    @media (max-width: 520px) {
+      .tiers { grid-template-columns: 1fr; }
+      .nav-cta { padding: 8px 14px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="top">
+  <div class="wrap">
+    <a href="#top" class="lockup" aria-label="Groundwork home">
+      <svg class="mark" width="36" height="25" viewBox="0 0 52 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="0" y="0"  width="52" height="8" rx="2" fill="#2C2C2A"/>
+        <rect x="0" y="14" width="40" height="8" rx="2" fill="#5F5E5A"/>
+        <rect x="0" y="28" width="28" height="8" rx="2" fill="#B4B2A9"/>
+      </svg>
+      <div>
+        <div class="wordmark">groundwork</div>
+      </div>
+    </a>
+    <a href="#start" class="nav-cta">Get started</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top" style="border-top: none;">
+  <div class="wrap">
+    <div class="hero-grid">
+
+      <div class="hero-content">
+        <h1>Send it.<span class="handled">Handled.</span></h1>
+        <p class="lede">Flat-rate task execution for the people doing the work. No retainer. No subscription. No back-and-forth.</p>
+        <div class="cta-row">
+          <a href="#start" class="btn btn-primary">Send your first task</a>
+          <a href="#how" class="btn btn-ghost">See how it works</a>
+        </div>
+      </div>
+
+      <div class="hero-demo" aria-label="Sample task exchange">
+        <div class="phone-frame">
+
+          <div class="phone-header">
+            <svg class="mark" width="22" height="15" viewBox="0 0 52 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="0" y="0"  width="52" height="8" rx="2" fill="#2C2C2A"/>
+              <rect x="0" y="14" width="40" height="8" rx="2" fill="#5F5E5A"/>
+              <rect x="0" y="28" width="28" height="8" rx="2" fill="#B4B2A9"/>
+            </svg>
+            <div class="contact">
+              <span class="contact-name">Groundwork</span>
+              <span class="contact-status">Active now</span>
+            </div>
+            <span class="status-dot" aria-hidden="true"></span>
+          </div>
+
+          <div class="phone-messages">
+
+            <div class="msg msg-in">
+              <p>Need a 5-email cold sequence for our SOC 2 launch. Send by EOD tomorrow.</p>
+            </div>
+            <div class="msg-meta msg-meta-in">9:42 AM · Today</div>
+
+            <div class="msg msg-out">
+              <p>On it. Priority — $50, 24hr. Confirm?</p>
+            </div>
+            <div class="msg-meta msg-meta-out">9:43 AM · Quoted</div>
+
+            <div class="msg msg-out">
+              <p>Done <span class="check">✓</span> — <span class="link">drive.google.com/sequence</span></p>
+            </div>
+            <div class="msg-meta msg-meta-out">8:14 AM · Tomorrow</div>
+
+          </div>
+
+          <div class="phone-footer">
+            <span>Card on file charged</span>
+            <span class="check">$50 ✓</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how">
+  <div class="wrap">
+    <p class="eyebrow-sec">How it works</p>
+    <h2>Three steps. No portal to learn.</h2>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01 — Submit</span>
+        <h3>Send a voice note or text</h3>
+        <p>Tell us what you need. Voice, text, file — whatever is fastest. Context comes with the ask.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">02 — Approve</span>
+        <h3>Pick a turnaround</h3>
+        <p>Quote and tier back within the hour. Approve and we start. No scoping calls, no back-and-forth.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">03 — Receive</span>
+        <h3>Get the deliverable</h3>
+        <p>Lands in a shared folder. Card on file gets charged. That's the whole loop.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="pricing">
+  <div class="wrap">
+    <p class="eyebrow-sec">Pricing</p>
+    <h2>Turnaround drives price.</h2>
+    <p class="lead-para">Pick the speed you need. The tier sets the price. No per-task negotiating.</p>
+
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-name">Standard</div>
+        <div class="tier-when">48 hours</div>
+        <div class="tier-price">$25<span class="unit">/ task</span></div>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Priority</div>
+        <div class="tier-when">24 hours</div>
+        <div class="tier-price">$50<span class="unit">/ task</span></div>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Urgent</div>
+        <div class="tier-when">Same day</div>
+        <div class="tier-price">$100<span class="unit">/ task</span></div>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Emergency</div>
+        <div class="tier-when">2 hours, business hours</div>
+        <div class="tier-price">$200<span class="unit">/ task</span></div>
+      </div>
+    </div>
+
+    <p class="pricing-note">A task is one discrete deliverable, ~90 minutes of execution max. Anything bigger gets flagged before we start. Calls when needed: $100 flat, 30 minutes.</p>
+  </div>
+</section>
+
+<!-- ============ SCOPE ============ -->
+<section id="scope">
+  <div class="wrap">
+    <p class="eyebrow-sec">Scope</p>
+    <h2>Everything except custom builds.</h2>
+    <div class="scope">
+      <div class="scope-col">
+        <h3>In scope</h3>
+        <ul>
+          <li><span class="marker">+</span>Copy &amp; sequences</li>
+          <li><span class="marker">+</span>Research &amp; briefs</li>
+          <li><span class="marker">+</span>Audits &amp; teardowns</li>
+          <li><span class="marker">+</span>List pulls &amp; scrapes</li>
+          <li><span class="marker">+</span>Decks &amp; one-pagers</li>
+          <li><span class="marker">+</span>Design &amp; brand crit</li>
+          <li><span class="marker">+</span>SOPs &amp; workflows</li>
+          <li><span class="marker">+</span>AI prompts &amp; skills</li>
+        </ul>
+      </div>
+      <div class="scope-col out">
+        <h3>Scoped separately</h3>
+        <ul>
+          <li><span class="marker">–</span>Custom software builds</li>
+          <li><span class="marker">–</span>Paid third-party API integrations</li>
+          <li><span class="marker">–</span>Client-facing representation</li>
+          <li><span class="marker">–</span>Long-running monthly delivery</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRACTICES ============ -->
+<section id="practices">
+  <div class="wrap">
+    <p class="eyebrow-sec">Practices</p>
+    <h2>One operating group. Many practices.</h2>
+    <p class="lead-para">Each industry vertical runs as its own practice on shared Groundwork infrastructure. Same intake, same execution, same billing — different domain expertise per practice.</p>
+
+    <div class="practices">
+
+      <div class="practice">
+        <div class="practice-lockup">
+          <svg class="mark" width="32" height="22" viewBox="0 0 52 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="0" y="0"  width="52" height="8" rx="2" fill="#2C2C2A"/>
+            <rect x="0" y="14" width="40" height="8" rx="2" fill="#5F5E5A"/>
+            <rect x="0" y="28" width="28" height="8" rx="2" fill="#B4B2A9"/>
+          </svg>
+          <div>
+            <div class="practice-name">Groundwork</div>
+            <div class="practice-vertical">for Nonprofits</div>
+          </div>
+        </div>
+        <p>Grant prep, donor comms, board decks, program documentation. The recurring task pile that never gets cleared.</p>
+        <span class="tag tag-live">Open for work</span>
+      </div>
+
+      <div class="practice">
+        <div class="practice-lockup">
+          <svg class="mark" width="32" height="22" viewBox="0 0 52 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="0" y="0"  width="52" height="8" rx="2" fill="#2C2C2A"/>
+            <rect x="0" y="14" width="40" height="8" rx="2" fill="#5F5E5A"/>
+            <rect x="0" y="28" width="28" height="8" rx="2" fill="#B4B2A9"/>
+          </svg>
+          <div>
+            <div class="practice-name">Groundwork</div>
+            <div class="practice-vertical">for Agencies</div>
+          </div>
+        </div>
+        <p>Briefs, decks, competitive research, client reporting, the "can you just pull this together" requests AMs are drowning in.</p>
+        <span class="tag tag-live">Open for work</span>
+      </div>
+
+      <div class="practice">
+        <div class="practice-lockup">
+          <svg class="mark" width="32" height="22" viewBox="0 0 52 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="0" y="0"  width="52" height="8" rx="2" fill="#2C2C2A"/>
+            <rect x="0" y="14" width="40" height="8" rx="2" fill="#5F5E5A"/>
+            <rect x="0" y="28" width="28" height="8" rx="2" fill="#B4B2A9"/>
+          </svg>
+          <div>
+            <div class="practice-name">Groundwork</div>
+            <div class="practice-vertical">for Economic Development</div>
+          </div>
+        </div>
+        <p>Grant writing support, community data pulls, stakeholder reports, event docs, board prep for orgs with too few hands.</p>
+        <span class="tag tag-soon">Coming soon</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section id="why" class="why">
+  <div class="wrap">
+    <p class="eyebrow-sec">Why this exists</p>
+    <h2>Retainers are backwards.</h2>
+    <p>Most agency work is front-loaded. After month one, you're paying retainer to justify a relationship instead of getting work done.</p>
+    <div class="editorial">"Send it. Handled." is the whole pitch.</div>
+    <p>Groundwork trades retainer for incentive alignment. We make money when you have things to do. The work gets faster, not slower, the longer we run together.</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="wrap-narrow">
+    <p class="eyebrow-sec">Questions</p>
+    <h2>The honest answers.</h2>
+
+    <details>
+      <summary>Who is this for?</summary>
+      <p>Operators who already know what good work looks like and don't want to manage a vendor to get it. Agencies clearing backlog. Nonprofit EDs swimming in board prep. Founders running ahead of their team.</p>
+    </details>
+
+    <details>
+      <summary>What counts as one task?</summary>
+      <p>One discrete deliverable, bounded scope. If your ask is bigger we flag it before starting and break it into two — no surprise invoices.</p>
+    </details>
+
+    <details>
+      <summary>How does payment work?</summary>
+      <p>Card on file via Stripe. Charged on task approval. No subscription, no monthly minimum, no auto-renewal.</p>
+    </details>
+
+    <details>
+      <summary>Why "Groundwork"?</summary>
+      <p>It's the layer underneath. The thing that lets the visible work happen. Each industry vertical runs as its own practice on top of the same operating infrastructure.</p>
+    </details>
+
+    <details>
+      <summary>What if I need something out of scope?</summary>
+      <p>Tell us anyway. Custom builds and integrations get scoped separately. Sometimes a few flat-rate tasks are the right answer; sometimes we'll point you to someone better suited.</p>
+    </details>
+
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section id="start" style="border-top: none; padding-top: 24px;">
+  <div class="wrap-narrow">
+    <div class="cta-block">
+      <h2>Send the first one.</h2>
+      <p>No commitment. No onboarding call. Text what you need and we'll quote it within the hour.</p>
+      <a href="mailto:logan@raisingtheregion.org?subject=Groundwork%20—%20first%20task" class="btn btn-primary">Start a task</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <a href="#top" class="lockup" aria-label="Groundwork home">
+      <svg class="mark" width="28" height="19" viewBox="0 0 52 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="0" y="0"  width="52" height="8" rx="2" fill="#2C2C2A"/>
+        <rect x="0" y="14" width="40" height="8" rx="2" fill="#5F5E5A"/>
+        <rect x="0" y="28" width="28" height="8" rx="2" fill="#B4B2A9"/>
+      </svg>
+      <div>
+        <div class="wordmark" style="font-size: 16px;">groundwork</div>
+      </div>
+    </a>
+    <span class="foot-tag">© Groundwork 2026 · <a href="mailto:logan@raisingtheregion.org">logan@raisingtheregion.org</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
