@@ -492,6 +492,74 @@
     }
     .scope-col.out .marker { color: var(--gw-stone); }
 
+    /* ========== Functions ========== */
+    .functions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .func-card {
+      background: var(--gw-white);
+      border: 0.5px solid var(--gw-fog);
+      border-radius: var(--gw-radius-md);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .func-card h3 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--gw-ink);
+    }
+    .func-desc {
+      font-size: 14px;
+      color: var(--gw-mid);
+      margin: 0;
+      line-height: 1.5;
+    }
+    .func-mode {
+      border-top: 0.5px solid var(--gw-fog);
+      padding-top: 14px;
+      margin-top: 4px;
+    }
+    .mode-label {
+      font-family: var(--gw-font-primary);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gw-stone);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .mode-line {
+      font-size: 14px;
+      color: var(--gw-mid);
+      line-height: 1.55;
+      margin: 0;
+    }
+    .mode-line strong {
+      color: var(--gw-ink);
+      font-weight: 500;
+    }
+    .stack-tools {
+      font-size: 14px;
+      color: var(--gw-mid);
+      margin: 0;
+      line-height: 1.55;
+    }
+    .stack-tools .tool {
+      color: var(--gw-ink);
+      font-weight: 500;
+    }
+    .stack-tools .sep {
+      color: var(--gw-stone);
+      margin: 0 6px;
+    }
+
     /* ========== Practices ========== */
     .practices {
       display: grid;
@@ -652,6 +720,7 @@
       .steps { grid-template-columns: 1fr; }
       .tiers { grid-template-columns: repeat(2, 1fr); }
       .practices { grid-template-columns: 1fr; }
+      .functions { grid-template-columns: 1fr; }
       .scope { grid-template-columns: 1fr; gap: 16px; }
       section { padding: 64px 0; }
       .cta-block { padding: 48px 24px; }
@@ -689,7 +758,7 @@
 
       <div class="hero-content">
         <h1>Send it.<span class="handled">Handled.</span></h1>
-        <p class="lede">Flat-rate task execution for the people doing the work. No retainer. No subscription. No back-and-forth.</p>
+        <p class="lede">Two ways to get unstuck. <strong style="color:#2C2C2A; font-weight:500;">Send it</strong> — flat-rate task execution. Or <strong style="color:#2C2C2A; font-weight:500;">stack it</strong> — we set you up with the right tools to do it yourself. Same brand. Same trust.</p>
         <div class="cta-row">
           <a href="#start" class="btn btn-primary">Send your first task</a>
           <a href="#how" class="btn btn-ghost">See how it works</a>
@@ -834,28 +903,65 @@
   </div>
 </section>
 
-<!-- ============ WHO IT'S FOR ============ -->
-<section id="for">
+<!-- ============ FUNCTIONS ============ -->
+<section id="functions">
   <div class="wrap">
-    <p class="eyebrow-sec">Who it's for</p>
-    <h2>If your task pile never gets cleared.</h2>
-    <p class="lead-para">Different industries, same problem. Groundwork fits the operators whose work never quite catches up.</p>
+    <p class="eyebrow-sec">What we handle</p>
+    <h2>Pick a function. Send the task or grab the stack.</h2>
+    <p class="lead-para">Two ways to move. We'll do the work for you, flat rate. Or set you up with the tools to do it yourself. Pick what fits the moment.</p>
 
-    <div class="practices">
+    <div class="functions">
 
-      <div class="practice">
-        <h3>Nonprofits</h3>
-        <p>Grant prep, donor comms, board decks, program documentation. The recurring pile that never quite gets cleared.</p>
+      <div class="func-card">
+        <h3>Lead Gen &amp; Outreach</h3>
+        <p class="func-desc">Outbound sequences, lists, deliverability, copy iterations.</p>
+        <div class="func-mode">
+          <span class="mode-label">Send it · flat rate</span>
+          <p class="mode-line">Sequence builds (3–5 emails) · list pulls + enrichment · copy iterations · sequence audits.</p>
+        </div>
+        <div class="func-mode">
+          <span class="mode-label">Stack it · we set you up</span>
+          <p class="stack-tools"><span class="tool">Instantly</span><span class="sep">·</span><span class="tool">Apollo</span><span class="sep">·</span><span class="tool">HeyReach</span><span class="sep">·</span><span class="tool">Smartlead</span></p>
+        </div>
       </div>
 
-      <div class="practice">
-        <h3>Agencies</h3>
-        <p>Briefs, decks, competitive research, client reporting — the "can you just pull this together" requests AMs are drowning in.</p>
+      <div class="func-card">
+        <h3>Marketing &amp; Content</h3>
+        <p class="func-desc">Briefs, drafts, newsletters, social, content systems.</p>
+        <div class="func-mode">
+          <span class="mode-label">Send it · flat rate</span>
+          <p class="mode-line">Blog drafts · email newsletters · brand briefs · campaign one-pagers · social plans.</p>
+        </div>
+        <div class="func-mode">
+          <span class="mode-label">Stack it · we set you up</span>
+          <p class="stack-tools"><span class="tool">Beehiiv</span><span class="sep">·</span><span class="tool">Notion</span><span class="sep">·</span><span class="tool">Buffer</span><span class="sep">·</span><span class="tool">Canva</span></p>
+        </div>
       </div>
 
-      <div class="practice">
-        <h3>Economic development orgs</h3>
-        <p>Grant writing support, community data pulls, stakeholder reports, event docs, board prep for teams with too few hands.</p>
+      <div class="func-card">
+        <h3>Operations &amp; Docs</h3>
+        <p class="func-desc">SOPs, workflows, internal comms, system documentation.</p>
+        <div class="func-mode">
+          <span class="mode-label">Send it · flat rate</span>
+          <p class="mode-line">SOP write-ups · workflow design · internal templates · process audits.</p>
+        </div>
+        <div class="func-mode">
+          <span class="mode-label">Stack it · we set you up</span>
+          <p class="stack-tools"><span class="tool">Notion</span><span class="sep">·</span><span class="tool">ClickUp</span><span class="sep">·</span><span class="tool">Make</span><span class="sep">·</span><span class="tool">Zapier</span></p>
+        </div>
+      </div>
+
+      <div class="func-card">
+        <h3>Research &amp; Briefs</h3>
+        <p class="func-desc">Market context, competitor reads, account briefs, prep work.</p>
+        <div class="func-mode">
+          <span class="mode-label">Send it · flat rate</span>
+          <p class="mode-line">Competitor teardowns · account briefs · market notes · pre-call prep.</p>
+        </div>
+        <div class="func-mode">
+          <span class="mode-label">Stack it · we set you up</span>
+          <p class="stack-tools"><span class="tool">Perplexity</span><span class="sep">·</span><span class="tool">Clay</span><span class="sep">·</span><span class="tool">Grain</span><span class="sep">·</span><span class="tool">Fathom</span></p>
+        </div>
       </div>
 
     </div>
@@ -868,7 +974,7 @@
     <p class="eyebrow-sec">Why this exists</p>
     <h2>Retainers are backwards.</h2>
     <p>Most agency work is front-loaded. After month one, you're paying retainer to justify a relationship instead of getting work done.</p>
-    <div class="editorial">"Send it. Handled." is the whole pitch.</div>
+    <div class="editorial">Two ways. Either way — handled.</div>
     <p>Groundwork trades retainer for incentive alignment. We make money when you have things to do. The work gets faster, not slower, the longer we run together.</p>
   </div>
 </section>
@@ -904,6 +1010,11 @@
       <p>Tell us anyway. Custom builds and integrations get scoped separately. Sometimes a few flat-rate tasks are the right answer; sometimes we'll point you to someone better suited.</p>
     </details>
 
+    <details>
+      <summary>What is "Stack it"?</summary>
+      <p>The other mode. Instead of sending us a task, we recommend the right tools for the function and set you up to handle it yourself. Tool links earn affiliate commissions — that's how Stack it stays free.</p>
+    </details>
+
   </div>
 </section>
 
@@ -931,7 +1042,10 @@
         <div class="wordmark" style="font-size: 16px;">groundwork</div>
       </div>
     </a>
-    <span class="foot-tag">© Groundwork 2026 · <a href="mailto:logan@raisingtheregion.org">logan@raisingtheregion.org</a></span>
+    <div style="display:flex; flex-direction:column; gap:6px; align-items:flex-end; text-align:right;">
+      <span class="foot-tag">© Groundwork 2026 · <a href="mailto:logan@raisingtheregion.org">logan@raisingtheregion.org</a></span>
+      <span class="foot-tag" style="font-size:10px; color:var(--gw-stone);">Stack it links may earn affiliate commissions.</span>
+    </div>
   </div>
 </footer>
 
