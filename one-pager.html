@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Groundwork — One-Pager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    @page {
+      size: 8.5in 11in;
+      margin: 0;
+    }
+
+    :root {
+      --gw-ink:        #2C2C2A;
+      --gw-mid:        #5F5E5A;
+      --gw-stone:      #B4B2A9;
+      --gw-fog:        #D3D1C7;
+      --gw-paper:      #F1EFE8;
+      --gw-paper-warm: #ECE7DA;
+      --gw-white:      #FFFFFF;
+      --gw-font-primary:   'Outfit', sans-serif;
+      --gw-font-editorial: 'DM Serif Display', Georgia, serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--gw-paper);
+      color: var(--gw-ink);
+      font-family: var(--gw-font-primary);
+      font-size: 10pt;
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      width: 8.5in;
+      height: 11in;
+      padding: 0.5in 0.55in;
+      display: flex;
+      flex-direction: column;
+      background: var(--gw-paper);
+      page-break-after: always;
+    }
+
+    /* ===== Header ===== */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14pt;
+      border-bottom: 0.5pt solid var(--gw-fog);
+    }
+    .lockup {
+      display: flex;
+      align-items: center;
+      gap: 10pt;
+    }
+    .lockup svg { display: block; }
+    .lockup .wordmark {
+      font-weight: 600;
+      font-size: 18pt;
+      letter-spacing: -0.03em;
+      color: var(--gw-ink);
+      line-height: 1;
+    }
+    .header .meta {
+      font-size: 8pt;
+      color: var(--gw-stone);
+      text-align: right;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+    .header .meta a {
+      color: var(--gw-mid);
+      text-decoration: none;
+      border-bottom: 0.5pt solid var(--gw-fog);
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      padding: 22pt 0 18pt;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 30pt;
+      align-items: center;
+      border-bottom: 0.5pt solid var(--gw-fog);
+    }
+    .hero h1 {
+      font-family: var(--gw-font-primary);
+      font-weight: 600;
+      font-size: 38pt;
+      line-height: 1.0;
+      letter-spacing: -0.025em;
+      color: var(--gw-ink);
+      margin-bottom: 12pt;
+    }
+    .hero h1 .handled {
+      display: block;
+      font-family: var(--gw-font-editorial);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gw-mid);
+      letter-spacing: -0.01em;
+    }
+    .hero .lede {
+      font-size: 11pt;
+      color: var(--gw-mid);
+      line-height: 1.45;
+    }
+
+    /* ===== Phone mock ===== */
+    .phone {
+      background: var(--gw-white);
+      border: 0.5pt solid var(--gw-fog);
+      border-radius: 10pt;
+      padding: 10pt 9pt 9pt;
+      box-shadow: 0 4pt 12pt rgba(44,44,42,0.08);
+    }
+    .phone-header {
+      display: flex;
+      align-items: center;
+      gap: 6pt;
+      padding-bottom: 7pt;
+      border-bottom: 0.4pt solid var(--gw-fog);
+      margin-bottom: 8pt;
+    }
+    .phone-header .contact-name {
+      font-weight: 600;
+      font-size: 9pt;
+      color: var(--gw-ink);
+      line-height: 1;
+    }
+    .phone-header .contact-status {
+      font-size: 7pt;
+      color: var(--gw-stone);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      margin-top: 2pt;
+    }
+    .phone-header .status-dot {
+      width: 5pt; height: 5pt;
+      border-radius: 50%;
+      background: #3B6D11;
+      margin-left: auto;
+    }
+    .msgs {
+      display: flex;
+      flex-direction: column;
+      gap: 3pt;
+    }
+    .msg {
+      max-width: 84%;
+      padding: 6pt 9pt;
+      border-radius: 11pt;
+      font-size: 8.5pt;
+      line-height: 1.35;
+    }
+    .msg-in {
+      align-self: flex-start;
+      background: var(--gw-paper-warm);
+      color: var(--gw-ink);
+      border-bottom-left-radius: 4pt;
+      margin-top: 5pt;
+    }
+    .msg-out {
+      align-self: flex-end;
+      background: var(--gw-ink);
+      color: var(--gw-white);
+      border-bottom-right-radius: 4pt;
+      margin-top: 5pt;
+    }
+    .msg-out + .msg-out { margin-top: 1pt; }
+    .meta-line {
+      font-size: 6.5pt;
+      color: var(--gw-stone);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 5pt;
+    }
+    .meta-in { align-self: flex-start; }
+    .meta-out { align-self: flex-end; }
+    .phone-foot {
+      margin-top: 10pt;
+      padding-top: 7pt;
+      border-top: 0.4pt dashed var(--gw-fog);
+      display: flex;
+      justify-content: space-between;
+      font-size: 7pt;
+      color: var(--gw-stone);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .phone-foot .check { color: #3B6D11; font-weight: 500; }
+
+    /* ===== Section blocks ===== */
+    .body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding-top: 18pt;
+    }
+    .row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18pt;
+      padding: 14pt 0;
+      border-bottom: 0.5pt solid var(--gw-fog);
+    }
+    .row .col h3 {
+      font-family: var(--gw-font-primary);
+      font-weight: 500;
+      font-size: 9pt;
+      color: var(--gw-stone);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 6pt;
+    }
+    .row .col .h-big {
+      font-family: var(--gw-font-primary);
+      font-weight: 500;
+      font-size: 13pt;
+      color: var(--gw-ink);
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      margin-bottom: 4pt;
+    }
+    .row .col p {
+      font-size: 9pt;
+      color: var(--gw-mid);
+      line-height: 1.45;
+    }
+
+    /* ===== Pricing ===== */
+    .pricing {
+      padding: 14pt 0;
+      border-bottom: 0.5pt solid var(--gw-fog);
+    }
+    .pricing-eyebrow {
+      font-size: 9pt;
+      color: var(--gw-stone);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8pt;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8pt;
+    }
+    .tier {
+      background: var(--gw-white);
+      border: 0.5pt solid var(--gw-fog);
+      border-radius: 4pt;
+      padding: 9pt 10pt;
+    }
+    .tier-name {
+      font-weight: 500;
+      font-size: 10pt;
+      color: var(--gw-ink);
+      line-height: 1;
+    }
+    .tier-when {
+      font-size: 8pt;
+      color: var(--gw-mid);
+      margin-top: 2pt;
+      margin-bottom: 6pt;
+      line-height: 1;
+    }
+    .tier-price {
+      font-family: var(--gw-font-editorial);
+      font-size: 22pt;
+      color: var(--gw-ink);
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+    .tier-price .unit {
+      font-family: var(--gw-font-primary);
+      font-weight: 400;
+      font-size: 8pt;
+      color: var(--gw-mid);
+      margin-left: 3pt;
+    }
+    .pricing-note {
+      font-size: 8pt;
+      color: var(--gw-stone);
+      margin-top: 8pt;
+      font-style: italic;
+    }
+
+    /* ===== Scope ===== */
+    .scope {
+      padding: 14pt 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24pt;
+      border-bottom: 0.5pt solid var(--gw-fog);
+    }
+    .scope-col h3 {
+      font-size: 9pt;
+      color: var(--gw-stone);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 6pt;
+    }
+    .scope-col .label {
+      font-weight: 500;
+      font-size: 11pt;
+      color: var(--gw-ink);
+      margin-bottom: 5pt;
+    }
+    .scope-col p {
+      font-size: 9pt;
+      color: var(--gw-mid);
+      line-height: 1.5;
+    }
+
+    /* ===== Footer ===== */
+    .foot {
+      margin-top: auto;
+      padding-top: 12pt;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 8pt;
+      color: var(--gw-stone);
+      letter-spacing: 0.04em;
+    }
+    .foot .contact {
+      color: var(--gw-mid);
+    }
+    .foot .contact strong {
+      color: var(--gw-ink);
+      font-weight: 500;
+    }
+    .foot .url {
+      font-family: var(--gw-font-editorial);
+      font-style: italic;
+      font-size: 10pt;
+      color: var(--gw-ink);
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="lockup">
+      <svg width="42" height="29" viewBox="0 0 52 36" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0"  width="52" height="8" rx="2" fill="#2C2C2A"/>
+        <rect x="0" y="14" width="40" height="8" rx="2" fill="#5F5E5A"/>
+        <rect x="0" y="28" width="28" height="8" rx="2" fill="#B4B2A9"/>
+      </svg>
+      <span class="wordmark">groundwork</span>
+    </div>
+    <div class="meta">
+      Flat-rate task execution<br/>
+      <a href="https://logansherzog.github.io/groundwork/">logansherzog.github.io/groundwork</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div>
+      <h1>Send it.<span class="handled">Handled.</span></h1>
+      <p class="lede">Flat-rate task execution for the people doing the work. No retainer. No subscription. No back-and-forth.</p>
+    </div>
+    <div class="phone">
+      <div class="phone-header">
+        <svg width="20" height="14" viewBox="0 0 52 36" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0"  width="52" height="8" rx="2" fill="#2C2C2A"/>
+          <rect x="0" y="14" width="40" height="8" rx="2" fill="#5F5E5A"/>
+          <rect x="0" y="28" width="28" height="8" rx="2" fill="#B4B2A9"/>
+        </svg>
+        <div>
+          <div class="contact-name">Groundwork</div>
+          <div class="contact-status">Active now</div>
+        </div>
+        <span class="status-dot"></span>
+      </div>
+      <div class="msgs">
+        <div class="msg msg-in">Need a 5-email cold sequence for our SOC 2 launch. Send by EOD tomorrow.</div>
+        <div class="meta-line meta-in">9:42 AM · Today</div>
+        <div class="msg msg-out">On it. Priority — $50, 24hr. Confirm?</div>
+        <div class="meta-line meta-out">9:43 AM · Quoted</div>
+        <div class="msg msg-out">Done ✓ — drive.google.com/sequence</div>
+        <div class="meta-line meta-out">8:14 AM · Tomorrow</div>
+      </div>
+      <div class="phone-foot">
+        <span>Card on file charged</span>
+        <span class="check">$50 ✓</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+
+    <!-- How it works -->
+    <div class="row">
+      <div class="col">
+        <h3>01 — Submit</h3>
+        <div class="h-big">Send a voice note or text</div>
+        <p>Tell us what you need. Voice, text, file — whatever is fastest. Context comes with the ask.</p>
+      </div>
+      <div class="col">
+        <h3>02 — Approve</h3>
+        <div class="h-big">Pick a turnaround</div>
+        <p>Quote and tier back within the hour. Approve and we start. No scoping calls.</p>
+      </div>
+      <div class="col">
+        <h3>03 — Receive</h3>
+        <div class="h-big">Get the deliverable</div>
+        <p>Lands in a shared folder. Card on file gets charged. That's the whole loop.</p>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="pricing">
+      <div class="pricing-eyebrow">Pricing — turnaround drives price</div>
+      <div class="pricing-grid">
+        <div class="tier">
+          <div class="tier-name">Standard</div>
+          <div class="tier-when">48 hours</div>
+          <div class="tier-price">$25<span class="unit">/ task</span></div>
+        </div>
+        <div class="tier">
+          <div class="tier-name">Priority</div>
+          <div class="tier-when">24 hours</div>
+          <div class="tier-price">$50<span class="unit">/ task</span></div>
+        </div>
+        <div class="tier">
+          <div class="tier-name">Urgent</div>
+          <div class="tier-when">Same day</div>
+          <div class="tier-price">$100<span class="unit">/ task</span></div>
+        </div>
+        <div class="tier">
+          <div class="tier-name">Emergency</div>
+          <div class="tier-when">2hr business</div>
+          <div class="tier-price">$200<span class="unit">/ task</span></div>
+        </div>
+      </div>
+      <p class="pricing-note">Calls when needed: $100 flat, 30 minutes. Card on file via Stripe, charged on task approval.</p>
+    </div>
+
+    <!-- Scope -->
+    <div class="scope">
+      <div class="scope-col">
+        <h3>In scope · flat rate</h3>
+        <div class="label">Everything except custom builds.</div>
+        <p>Copy &amp; sequences. Research &amp; briefs. Audits &amp; teardowns. List pulls &amp; scrapes. Decks &amp; one-pagers. Design &amp; brand crit. SOPs &amp; workflows. AI prompts &amp; skills.</p>
+      </div>
+      <div class="scope-col">
+        <h3>Scoped separately</h3>
+        <div class="label">When the work is bigger than a task.</div>
+        <p>Custom software builds. Paid third-party API integrations. Client-facing representation. Long-running monthly delivery.</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="foot">
+      <div class="contact">
+        <strong>Logan Herzog</strong> · logan@raisingtheregion.org
+      </div>
+      <div class="url">Send the first one →</div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
