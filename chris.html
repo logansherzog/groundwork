@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Groundwork — Proposal for Chris Gorges</title>
+  <meta name="description" content="Custom Groundwork proposal for Thompson & Prince. Civilwarshop.com newsletter growth, client dock-in patterns, Magnify intro." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --gw-ink:        #2C2C2A;
+      --gw-mid:        #5F5E5A;
+      --gw-stone:      #B4B2A9;
+      --gw-fog:        #D3D1C7;
+      --gw-paper:      #F1EFE8;
+      --gw-paper-warm: #ECE7DA;
+      --gw-white:      #FFFFFF;
+      --gw-font-primary:   'Outfit', sans-serif;
+      --gw-font-editorial: 'DM Serif Display', Georgia, serif;
+      --gw-radius-sm:  4px;
+      --gw-radius-md:  8px;
+      --gw-radius-lg:  14px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--gw-paper);
+      color: var(--gw-ink);
+      font-family: var(--gw-font-primary);
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--gw-ink); border-bottom: 1px solid var(--gw-fog); text-decoration: none; }
+    a:hover { color: var(--gw-mid); border-color: var(--gw-mid); }
+
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+
+    /* ===== Top nav ===== */
+    .top {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--gw-fog);
+      background: rgba(241, 239, 232, 0.85);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: saturate(140%) blur(8px);
+      -webkit-backdrop-filter: saturate(140%) blur(8px);
+    }
+    .top .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .lockup { display: flex; align-items: center; gap: 12px; border: none; }
+    .lockup:hover { border: none; }
+    .wordmark {
+      font-family: var(--gw-font-primary);
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+      color: var(--gw-ink);
+      line-height: 1;
+    }
+    .doc-tag {
+      font-family: var(--gw-font-primary);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gw-stone);
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid var(--gw-fog);
+    }
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gw-mid);
+      margin: 0 0 18px;
+    }
+    .hero h1 {
+      font-family: var(--gw-font-primary);
+      font-weight: 600;
+      font-size: clamp(36px, 5vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      color: var(--gw-ink);
+      margin: 0 0 20px;
+    }
+    .hero h1 em {
+      font-family: var(--gw-font-editorial);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gw-mid);
+      letter-spacing: -0.01em;
+    }
+    .hero .lede {
+      font-size: 18px;
+      color: var(--gw-mid);
+      max-width: 600px;
+      margin: 0;
+    }
+
+    /* ===== Sections ===== */
+    section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--gw-fog);
+    }
+    .eyebrow-sec {
+      font-family: var(--gw-font-primary);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gw-mid);
+      margin: 0 0 14px;
+    }
+    h2 {
+      font-family: var(--gw-font-primary);
+      font-weight: 500;
+      font-size: clamp(26px, 3.4vw, 32px);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      color: var(--gw-ink);
+      margin: 0 0 20px;
+    }
+    h3 {
+      font-family: var(--gw-font-primary);
+      font-weight: 500;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      color: var(--gw-ink);
+      margin: 0 0 6px;
+    }
+    p { margin: 0 0 14px; color: var(--gw-mid); }
+    p strong { color: var(--gw-ink); font-weight: 500; }
+
+    /* ===== Cards ===== */
+    .case {
+      background: var(--gw-white);
+      border: 0.5px solid var(--gw-fog);
+      border-radius: var(--gw-radius-md);
+      padding: 32px;
+      margin-top: 16px;
+    }
+    .case h3 { font-size: 20px; margin-bottom: 4px; }
+    .case .sub {
+      font-size: 13px;
+      color: var(--gw-stone);
+      letter-spacing: 0.04em;
+      margin-bottom: 18px;
+    }
+    .case .diagnostic {
+      font-size: 15px;
+      color: var(--gw-mid);
+      line-height: 1.6;
+      margin-bottom: 22px;
+      padding-bottom: 22px;
+      border-bottom: 0.5px solid var(--gw-fog);
+    }
+
+    .mode-block { margin-bottom: 18px; }
+    .mode-block:last-child { margin-bottom: 0; }
+    .mode-label {
+      display: block;
+      font-family: var(--gw-font-primary);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gw-stone);
+      margin-bottom: 12px;
+    }
+    .task-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .task-list li {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      padding: 8px 0;
+      font-size: 14px;
+      color: var(--gw-mid);
+      border-bottom: 0.5px dashed var(--gw-fog);
+      align-items: baseline;
+    }
+    .task-list li:last-child { border-bottom: none; }
+    .task-list .name { color: var(--gw-ink); font-weight: 400; }
+    .task-list .price {
+      font-family: var(--gw-font-editorial);
+      font-size: 16px;
+      color: var(--gw-ink);
+      letter-spacing: -0.01em;
+    }
+    .task-list .price .tier {
+      font-family: var(--gw-font-primary);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gw-stone);
+      margin-right: 6px;
+    }
+
+    .stack-tools {
+      font-size: 14px;
+      color: var(--gw-mid);
+      line-height: 1.7;
+      margin: 0;
+    }
+    .stack-tools .tool { color: var(--gw-ink); font-weight: 500; }
+    .stack-tools .sep { color: var(--gw-stone); margin: 0 6px; }
+    .stack-tools .why {
+      display: block;
+      font-size: 13px;
+      color: var(--gw-stone);
+      margin-top: 4px;
+      font-style: italic;
+    }
+
+    /* ===== Pricing recap ===== */
+    .tiers {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .tier {
+      background: var(--gw-white);
+      border: 0.5px solid var(--gw-fog);
+      border-radius: var(--gw-radius-sm);
+      padding: 18px 16px;
+    }
+    .tier-name {
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--gw-ink);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .tier-when {
+      font-size: 11px;
+      color: var(--gw-mid);
+      margin-bottom: 12px;
+    }
+    .tier-price {
+      font-family: var(--gw-font-editorial);
+      font-size: 26px;
+      color: var(--gw-ink);
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+    .tier-price .unit {
+      font-family: var(--gw-font-primary);
+      font-weight: 400;
+      font-size: 11px;
+      color: var(--gw-mid);
+      margin-left: 4px;
+    }
+
+    /* ===== First moves ===== */
+    .moves {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 0;
+    }
+    .moves li {
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 0.5px solid var(--gw-fog);
+      align-items: start;
+    }
+    .moves li:last-child { border-bottom: none; }
+    .moves .num {
+      font-family: var(--gw-font-editorial);
+      font-size: 18px;
+      color: var(--gw-stone);
+      line-height: 1.2;
+    }
+    .moves .desc {
+      color: var(--gw-mid);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .moves .desc strong { color: var(--gw-ink); font-weight: 500; }
+    .moves .price {
+      font-family: var(--gw-font-editorial);
+      font-size: 18px;
+      color: var(--gw-ink);
+      letter-spacing: -0.01em;
+    }
+    .moves .price.free {
+      font-family: var(--gw-font-primary);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gw-stone);
+    }
+
+    /* ===== CTA block ===== */
+    .cta-block {
+      background: var(--gw-paper-warm);
+      border: 0.5px solid var(--gw-fog);
+      padding: 44px 36px;
+      border-radius: var(--gw-radius-lg);
+      text-align: left;
+      margin: 24px 0;
+    }
+    .cta-block h2 { margin-bottom: 12px; font-size: 26px; }
+    .cta-block p {
+      color: var(--gw-mid);
+      max-width: 540px;
+      margin: 0 0 24px;
+      font-size: 16px;
+    }
+    .btn {
+      display: inline-block;
+      font-family: var(--gw-font-primary);
+      font-size: 15px;
+      font-weight: 500;
+      padding: 13px 22px;
+      border-radius: var(--gw-radius-sm);
+      background: var(--gw-ink);
+      color: var(--gw-white);
+      border: none;
+    }
+    .btn:hover { background: #000; color: var(--gw-white); }
+
+    /* ===== Footer ===== */
+    footer {
+      padding: 36px 0 56px;
+      font-size: 13px;
+      color: var(--gw-stone);
+    }
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    footer .left { color: var(--gw-mid); }
+    footer .left strong { color: var(--gw-ink); font-weight: 500; }
+    footer .right { font-size: 11px; color: var(--gw-stone); }
+
+    /* ===== Mobile ===== */
+    @media (max-width: 600px) {
+      .hero { padding: 56px 0 44px; }
+      section { padding: 44px 0; }
+      .case { padding: 24px; }
+      .tiers { grid-template-columns: repeat(2, 1fr); }
+      .cta-block { padding: 32px 22px; }
+      .moves li { grid-template-columns: 24px 1fr; }
+      .moves .price { grid-column: 2; padding-top: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== Nav ===== -->
+<header class="top">
+  <div class="wrap">
+    <a href="https://logansherzog.github.io/groundwork/" class="lockup" aria-label="Groundwork">
+      <svg width="32" height="22" viewBox="0 0 52 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="0" y="0"  width="52" height="8" rx="2" fill="#2C2C2A"/>
+        <rect x="0" y="14" width="40" height="8" rx="2" fill="#5F5E5A"/>
+        <rect x="0" y="28" width="28" height="8" rx="2" fill="#B4B2A9"/>
+      </svg>
+      <span class="wordmark">groundwork</span>
+    </a>
+    <span class="doc-tag">Proposal · Apr 2026</span>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero" style="border-top: none;">
+  <div class="wrap">
+    <p class="eyebrow">Custom proposal · Thompson &amp; Prince</p>
+    <h1>Chris — here's where Groundwork <em>plugs in</em>.</h1>
+    <p class="lede">A read on yesterday's chat. Two practical paths: Civilwarshop.com as the sandbox, and the way you dock me into client work. Pick one, both, or neither — no pressure.</p>
+  </div>
+</section>
+
+<!-- ===== Use case 1: Civil War Shop ===== -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow-sec">Use case 1</p>
+    <h2>Civilwarshop.com — newsletter as the lead growth lever.</h2>
+
+    <div class="case">
+      <h3>The read</h3>
+      <p class="sub">After one pass through the site + the newsletter signup popup.</p>
+      <p class="diagnostic"><strong>Best-in-class product. Best site in the niche. Undermonetized email asset.</strong> Newsletter is ~200 subs; should be in the thousands. Will has carte blanche, the 7,500-member FB group is siloed from the list, and there's no UTM or conversion tracking in MailChimp. Three plays before any spend: reposition the list as <em>early access</em>, route the FB group into the email funnel weekly, and outbound to the 30–50 other dealers in the niche for cross-promo. Nobody else has email infrastructure — Will sells distribution.</p>
+
+      <div class="mode-block">
+        <span class="mode-label">Send it · we do it</span>
+        <ul class="task-list">
+          <li>
+            <span class="name">Wire up UTMs + MailChimp conversion event tied to a sale</span>
+            <span class="price"><span class="tier">Standard</span>$25</span>
+          </li>
+          <li>
+            <span class="name">Three popup variants positioning the list as early access</span>
+            <span class="price"><span class="tier">Standard</span>$25</span>
+          </li>
+          <li>
+            <span class="name">4-week dealer outreach sequence (cross-promo pitch)</span>
+            <span class="price"><span class="tier">Priority</span>$50</span>
+          </li>
+          <li>
+            <span class="name">"Subscribers-only" pre-list newsletter template (3 high-end items)</span>
+            <span class="price"><span class="tier">Standard</span>$25</span>
+          </li>
+          <li>
+            <span class="name">FB group → email feeder SOP (one pinned post a week)</span>
+            <span class="price"><span class="tier">Standard</span>$25</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mode-block">
+        <span class="mode-label">Stack it · we set you up</span>
+        <p class="stack-tools">
+          <span class="tool">Beehiiv</span><span class="sep">·</span><span class="tool">ConvertKit forms</span><span class="sep">·</span><span class="tool">Keek</span><span class="sep">·</span><span class="tool">ManyChat</span>
+          <span class="why">Beehiiv replaces MailChimp at scale (better automations, cheaper per subscriber). Keek is what you already signed up for — perfect for popup A/B testing once we're tracking properly.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Use case 2: Client engagements ===== -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow-sec">Use case 2</p>
+    <h2>When you dock me into a client engagement.</h2>
+
+    <div class="case">
+      <h3>The pattern</h3>
+      <p class="sub">For the times you don't want to refer to a full-service shop.</p>
+      <p class="diagnostic">You stay the relationship lead. I show up for the specific work that doesn't justify a retainer somewhere else. Two examples that fit your existing flow: the <strong>brand-just-launched, now needs outbound</strong> motion, and the <strong>vague-messaging rescue</strong> that you already get pulled into anyway.</p>
+
+      <div class="mode-block">
+        <span class="mode-label">What I'd handle</span>
+        <ul class="task-list">
+          <li>
+            <span class="name">Cold sequence build for a freshly-launched brand (3–5 emails + send order)</span>
+            <span class="price"><span class="tier">Priority</span>$50</span>
+          </li>
+          <li>
+            <span class="name">Three alt headlines + a one-page positioning doc for vague messaging</span>
+            <span class="price"><span class="tier">Priority</span>$50</span>
+          </li>
+          <li>
+            <span class="name">Account brief on a target client before your first call</span>
+            <span class="price"><span class="tier">Standard</span>$25</span>
+          </li>
+          <li>
+            <span class="name">Sequence audit + 30-min call to walk through the fix</span>
+            <span class="price"><span class="tier">Priority</span>$150</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mode-block">
+        <span class="mode-label">Stack it · for clients you'd rather hand a stack to than a vendor</span>
+        <p class="stack-tools">
+          For email outbound: <span class="tool">Instantly</span><span class="sep">·</span><span class="tool">Apollo</span><span class="sep">·</span><span class="tool">Smartlead</span><br/>
+          For LinkedIn outreach: <span class="tool">HeyReach</span><br/>
+          For research / brief workflow: <span class="tool">Perplexity</span><span class="sep">·</span><span class="tool">Clay</span>
+          <span class="why">You take your standard 10% cut on referred tool setup. I run on Groundwork pricing for the actual implementation.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Use case 3: Magnify ===== -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow-sec">Use case 3 · Standing offer</p>
+    <h2>The mortgage-matching benefits company.</h2>
+
+    <div class="case">
+      <p class="diagnostic" style="margin-bottom:0; padding-bottom:0; border-bottom:none;">
+        From your afternoon call yesterday. If their messaging is genuinely off and they need <strong>aggressive outbound horsepower</strong> beyond a flat-rate task service can deliver — <strong>I own a piece of Magnify</strong>, a Grand Rapids full-stack outbound shop. Happy to make the intro after you decide. Standard referral fee back to you on the first contract.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Pricing recap ===== -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow-sec">Pricing — the recap</p>
+    <h2>Turnaround drives price.</h2>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-name">Standard</div>
+        <div class="tier-when">48 hours</div>
+        <div class="tier-price">$25<span class="unit">/ task</span></div>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Priority</div>
+        <div class="tier-when">24 hours</div>
+        <div class="tier-price">$50<span class="unit">/ task</span></div>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Urgent</div>
+        <div class="tier-when">Same day</div>
+        <div class="tier-price">$100<span class="unit">/ task</span></div>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Emergency</div>
+        <div class="tier-when">2hr business</div>
+        <div class="tier-price">$200<span class="unit">/ task</span></div>
+      </div>
+    </div>
+    <p style="font-size:13px; color:var(--gw-stone); margin-top:18px; font-style:italic;">Calls when needed: $100 flat, 30 min. Card on file via Stripe, charged on task approval. No subscription, no minimum.</p>
+  </div>
+</section>
+
+<!-- ===== First moves ===== -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow-sec">First moves</p>
+    <h2>Pick what we test first.</h2>
+    <p>Three options, ordered by impact-to-effort. Anything beyond this we figure out as we go.</p>
+
+    <ol class="moves">
+      <li>
+        <span class="num">01</span>
+        <div class="desc"><strong>Wire up civilwarshop.com tracking.</strong> UTMs on the popup + MailChimp conversion event tied to a sale. Without this, every other move is unmeasurable. 48hr turnaround.</div>
+        <span class="price">$25</span>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <div class="desc"><strong>Three popup A/B variants.</strong> Reposition the list as <em>early access</em> instead of generic updates. You drop them into Keek (which you already have) and let it ride. Shipped tomorrow if you say go today.</div>
+        <span class="price">$25</span>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <div class="desc"><strong>Magnify intro for the mortgage-benefits client.</strong> Quick warm intro after your read on the call. Standard referral fee back to you.</div>
+        <span class="price free">No fee</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section style="border-bottom: none;">
+  <div class="wrap">
+    <div class="cta-block">
+      <h2>Reply with the first task.</h2>
+      <p>Or just nod yes on the Magnify intro. I'll have the shared folder + Stripe link set up before you hit send. No onboarding call required.</p>
+      <a href="mailto:logan@raisingtheregion.org?subject=Groundwork%20%E2%80%94%20let%27s%20start&body=Hey%20Logan%20%E2%80%94%20" class="btn">Send Logan the first task</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="wrap">
+    <div class="left">
+      <strong>Logan Herzog</strong> · logan@raisingtheregion.org · <a href="https://logansherzog.github.io/groundwork/">groundwork</a>
+    </div>
+    <div class="right">
+      Stack it links may earn affiliate commissions.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
